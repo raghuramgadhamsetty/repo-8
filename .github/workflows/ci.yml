@@ -1,12 +1,9 @@
-# CI - Runs on every push (commit), generates artifact with date version
+# CI - Manual/API trigger only (no trigger on commit)
 # Add this file to each repo as: .github/workflows/ci.yml
 
 name: CI
 
 on:
-  push:
-    branches:
-      - '**'
   workflow_dispatch:
 
 jobs:
@@ -30,7 +27,7 @@ jobs:
 
       - name: Run CI
         run: |
-          echo "CI triggered by push to ${{ github.ref }}"
+          echo "CI triggered for ${{ github.ref }}"
           echo "Repository: ${{ github.repository }}"
           echo "Commit: ${{ github.sha }}"
           echo "Version: ${{ steps.version.outputs.version }}"
