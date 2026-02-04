@@ -1,0 +1,22 @@
+# Deploy - Triggered manually or via API. Dummy workflow runs for 3 min.
+# Add this file to each repo as: .github/workflows/deploy.yml
+
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Dummy deploy (3 min)
+        run: |
+          echo "Deploy started for branch ${{ github.ref_name }}"
+          echo "Repository: ${{ github.repository }}"
+          sleep 180
+          echo "Deploy completed"
